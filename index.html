@@ -13,38 +13,53 @@
 
 
     <script>
-        const playerSelection = 'rock';
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
+        const pc = 'scissors';
+        const cs = computerPlay();
+        console.log(playRound(pc, cs));
 
 
-        function playRound(playerSelection, computerSelection) {
-            if (computerPlay == 'rock') {
-                if (playerSelection == 'rock') {
-                    tie();
-                } else if (playerSelection == 'paper') {
-                    playerWon();
-                } else if (playerSelection == 'scissors') {
-                    computerWon();
+        //variables for keeping score
+
+        console.log(pc);
+        console.log(cs);
+
+        function playRound(playerSelection, computerPlay) {
+            let winner = '';
+
+            if (computerPlay == "rock") {
+                if (playerSelection === "rock") {
+                    return tie();
+                } else if (playerSelection === "paper") {
+                    winner = 'player';
+                    return playerWon();
+                } else if (playerSelection === "scissors") {
+                    winner = 'computer';
+                    return computerWon();
                 }
-            } else if (computerPlay == 'paper') {
-                if (playerSelection == 'rock') {
-                    computerWon();
-                } else if (playerSelection == 'paper') {
-                    tie();
-                } else if (playerSelection == 'scissors') {
-                    playerWon();
+            } else if (computerPlay === "paper") {
+                if (playerSelection === "rock") {
+                    winner = 'computer';
+                    return computerWon();
+                } else if (playerSelection === "paper") {
+                    return tie();
+                } else if (playerSelection === "scissors") {
+                    winner = 'player';
+                    return playerWon();
                 }
-            } else if (computerPlay == 'scissors') {
-                if (playerSelection == 'rock') {
-                    playerWon();
-                } else if (playerSelection == 'paper') {
-                    computerWon();
-                } else if (playerSelection == 'scissors') {
-                    tie();
+            } else if (computerPlay === "scissors") {
+                if (playerSelection === "rock") {
+                    winner = 'player';
+                    return playerWon();
+                } else if (playerSelection === "paper") {
+                    winner = 'computer';
+                    return computerWon();
+                } else if (playerSelection === "scissors") {
+                    return tie();
                 }
             }
         }
+
+
 
         function computerWon() {
             return "The A.I has won";
