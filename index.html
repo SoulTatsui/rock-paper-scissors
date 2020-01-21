@@ -3,6 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- minify -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <!-- latest -->
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <!-- core style only -->
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Let's play!</title>
@@ -36,40 +43,25 @@
     <div class="container-player">
         <div class="button-container">
             <div class="button">
-                <button type="button" value="rock" id="rock" class="btn" onclick="fired_button = 'rock'">
-                    <img src="img/stone.svg" alt="rock">
+                <button type="button" value="rock" id="rock" class="btn nes-btn" onclick="fired_button = 'rock'">
+                    rock
                 </button>
             </div>
             <div class="button">
-                <button type="button" value="paper" id="paper" class="btn" onclick="fired_button = 'paper'">
-                    <img src="img/document.svg" alt="paper">
+                <button type="button" value="paper" id="paper" class="btn nes-btn" onclick="fired_button = 'paper'">
+                    paper
                 </button>
             </div>
             <div class="button">
-                <button type="button" value="scissors" id="scissors" class="btn" onclick="fired_button = 'scissors'">
-                    <img src=" img/scissors.svg" alt="scissors">
+                <button type="button" value="scissors" id="scissors" class="btn nes-btn"
+                    onclick="fired_button = 'scissors'">
+                    scissors
                 </button>
             </div>
         </div>
 
 
-        <div class="button-container">
-            <div class="button">
-                <button type="button" value="rock">
-                    <img src="img/stone.svg" alt="rock">
-                </button>
-            </div>
-            <div class="button">
-                <button type="button" onclick="" value="paper">
-                    <img src="img/document.svg" alt="paper">
-                </button>
-            </div>
-            <div class="button">
-                <button type="button" onclick="" value="scissors">
-                    <img src="img/scissors.svg" alt="scissors">
-                </button>
-            </div>
-        </div>
+
 
     </div>
 
