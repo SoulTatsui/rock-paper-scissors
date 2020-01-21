@@ -41,7 +41,13 @@
     </div>
 
     <div class="container-player">
-        <div class="button-container">
+        <section class="icon-list playerWon" id="show">
+            <i class="nes-icon trophy is-large"></i>
+        </section>
+        <section class="icon-list playerLost" id="showlost">
+            <i class="nes-icon close is-large"></i>
+        </section>
+        <div class="button-container" id="disapear">
             <div class="button">
                 <button type="button" value="rock" id="rock" class="btn nes-btn" onclick="fired_button = 'rock'">
                     rock
@@ -168,9 +174,11 @@
             compScore.innerHTML = compValue;
 
             if (compValue === 5) {
-                alert("A kto przegrał ten trąba");
+                document.getElementById('disapear').style.display = "none";
+                document.getElementById('showlost').style.display = "block";
             } else if (playerValue === 5) {
-                alert("No i bomba");
+                document.getElementById('disapear').style.display = "none";
+                document.getElementById('show').style.display = "block";
             }
         }
     </script>
