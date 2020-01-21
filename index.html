@@ -11,72 +11,175 @@
 
 <body>
 
+    <div class="container-header">
+
+        <div class="score">
+            <div class="score-header">
+                <h1>Player</h1>
+            </div>
+
+            <div class="score-number">
+                <p id="playerScore">0</p>
+            </div>
+        </div>
+
+        <div class="score">
+            <div class="score-header">
+                <h1>Computer</h1>
+            </div>
+            <div class="score-number">
+                <p id="compScore">0</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-player">
+        <div class="button-container">
+            <div class="button">
+                <button type="button" value="rock" id="rock" class="btn" onclick="fired_button = 'rock'">
+                    <img src="img/stone.svg" alt="rock">
+                </button>
+            </div>
+            <div class="button">
+                <button type="button" value="paper" id="paper" class="btn" onclick="fired_button = 'paper'">
+                    <img src="img/document.svg" alt="paper">
+                </button>
+            </div>
+            <div class="button">
+                <button type="button" value="scissors" id="scissors" class="btn" onclick="fired_button = 'scissors'">
+                    <img src=" img/scissors.svg" alt="scissors">
+                </button>
+            </div>
+        </div>
+
+
+        <div class="button-container">
+            <div class="button">
+                <button type="button" value="rock">
+                    <img src="img/stone.svg" alt="rock">
+                </button>
+            </div>
+            <div class="button">
+                <button type="button" onclick="" value="paper">
+                    <img src="img/document.svg" alt="paper">
+                </button>
+            </div>
+            <div class="button">
+                <button type="button" onclick="" value="scissors">
+                    <img src="img/scissors.svg" alt="scissors">
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <div class="result">
+            <p id="gameResult"></p>
+        </div>
+        <div class="selectedValues">
+            <p class="userSelected"></p>
+        </div>
+
+        <div class="selectedValues">
+            <p class="compSelected"></p>
+        </div>
+
+    </div>
+
+
 
     <script>
-        const pc = 'scissors';
-        const cs = computerPlay();
-        console.log(playRound(pc, cs));
+        //Koniec i bomba
+        //A kto czytał, ten trąba!
 
+        //variable for user inputed value
+        var fired_button = document.querySelector("button").value;
 
-        //variables for keeping score
+        //function for generating random computer input
+        function computerPlay() {
+            let choiceList = ['rock', 'paper', 'scissors'];
+            return choiceList[Math.floor(Math.random() * 3)];
+        }
 
-        console.log(pc);
-        console.log(cs);
+        //function for playing
+        function playRound(e) {
+            //getting needed values
+            const playerSelection = fired_button;
+            const computerSelection = computerPlay();
+            let roundResult = "";
+            const gameLine1 = document.querySelector(".userSelected").textContent =
+                `You selected: ${playerSelection}`;
+            const gameLine2 = document.querySelector(".compSelected").textContent =
+                `Computer selected: ${computerSelection}`;
+            const gameLine3 = document.getElementById('gameResult');
 
-        function playRound(playerSelection, computerPlay) {
-            let winner = '';
-
-            if (computerPlay == "rock") {
-                if (playerSelection === "rock") {
-                    return tie();
-                } else if (playerSelection === "paper") {
-                    winner = 'player';
-                    return playerWon();
-                } else if (playerSelection === "scissors") {
-                    winner = 'computer';
-                    return computerWon();
-                }
-            } else if (computerPlay === "paper") {
-                if (playerSelection === "rock") {
-                    winner = 'computer';
-                    return computerWon();
-                } else if (playerSelection === "paper") {
-                    return tie();
-                } else if (playerSelection === "scissors") {
-                    winner = 'player';
-                    return playerWon();
-                }
-            } else if (computerPlay === "scissors") {
-                if (playerSelection === "rock") {
-                    winner = 'player';
-                    return playerWon();
-                } else if (playerSelection === "paper") {
-                    winner = 'computer';
-                    return computerWon();
-                } else if (playerSelection === "scissors") {
-                    return tie();
+            //simple if deciding who did win
+            if (playerSelection == computerSelection) {
+                roundResult = "tie";
+            } else {
+                if (playerSelection == "rock") {
+                    if (computerSelection == "paper") {
+                        roundResult = "lose";
+                    } else if (computerSelection == "scissors") {
+                        roundResult = "win";
+                    }
+                } else if (playerSelection == "paper") {
+                    if (computerSelection == "rock") {
+                        roundResult = "win";
+                    } else if (computerSelection == "scissors") {
+                        roundResult = "lose";
+                    }
+                } else if (playerSelection == "scissors") {
+                    if (computerSelection == "paper") {
+                        roundResult = "win";
+                    } else if (computerSelection == "rock") {
+                        roundResult = "lose";
+                    }
                 }
             }
+
+            //if telling the user who has won the round
+            if (roundResult == "win") {
+                gameLine3.innerHTML = "You win the round! 1 point added to your score!";
+            } else if (roundResult == "lose") {
+                gameLine3.innerHTML = "You lost the round! 1 point added to CPU score!";
+            } else if (roundResult == "tie") {
+                gameLine3.innerHTML = "It's a tie! No points awarded.";
+            }
+
+            //getting second function to get the user score info
+            game(roundResult);
         }
 
+        //getting value from whichever button the user decides to click
+        const buttons = document.querySelectorAll(".button");
+        buttons.forEach(button => button.addEventListener('click', playRound));
+
+        //variables for showing score to user
+        let compValue = 0;
+        let playerValue = 0;
+
+        function game(roundResult) {
+            let playerScore = document.getElementById('playerScore');
+            let compScore = document.getElementById('compScore');
 
 
-        function computerWon() {
-            return "The A.I has won";
-        }
+            if (roundResult == "win") {
+                playerValue++;
 
-        function tie() {
-            return "It's a tie";
-        }
+            } else if (roundResult == "lose") {
+                compValue++;
+            }
 
-        function playerWon() {
-            return "The player has won";
-        }
+            playerScore.innerHTML = playerValue;
+            compScore.innerHTML = compValue;
 
-        function computerPlay() {
-            let textArray = ['rock', 'paper', 'scissors']; //array with possible computer results
-            let randomNumber = Math.floor(Math.random() * textArray.length); //generates random array value
-            return textArray[randomNumber]; //returns the computer's value
+            if (compValue === 5) {
+                alert("A kto przegrał ten trąba");
+            } else if (playerValue === 5) {
+                alert("No i bomba");
+            }
         }
     </script>
 
