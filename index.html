@@ -64,6 +64,12 @@
                     scissors
                 </button>
             </div>
+            <div class="button">
+                <button type="button" value="scissors" id="scissors" class="btn nes-btn reset-button"
+                    onclick="refresh()">
+                    refresh
+                </button>
+            </div>
         </div>
 
 
@@ -180,6 +186,10 @@
                 document.getElementById('disapear').style.display = "none";
                 document.getElementById('show').style.display = "block";
             }
+        }
+
+        function refresh() {
+            location.reload();
         }
     </script>
 

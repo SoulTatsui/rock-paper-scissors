@@ -96,3 +96,7 @@ img {
 .playerLost {
     display: none;
 }
+
+.reset-button {
+    background-color: rebeccapurple;
+}
